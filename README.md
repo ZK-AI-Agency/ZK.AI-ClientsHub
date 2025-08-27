@@ -1,6 +1,6 @@
-# ZK.AI Client Portal
+# ClientsHub Client Portal
 
-A modern client portal for managing AI workflows, analytics, and automation with ZK.AI's powerful platform.
+A modern client portal for managing workflows, analytics, and automation with ClientsHub's powerful platform.
 
 ## Development
 
@@ -12,7 +12,7 @@ A modern client portal for managing AI workflows, analytics, and automation with
    ```
    VITE_SUPABASE_URL=https://your-project.supabase.co
    VITE_SUPABASE_ANON_KEY=your-anon-key
-   VITE_APP_NAME=ZK.AI Client Portal
+   VITE_APP_NAME=ClientsHub Client Portal
    VITE_APP_VERSION=1.0.0
    ```
 4. Start development server: `npm run dev`
@@ -23,7 +23,7 @@ The application requires the following environment variables:
 
 - `VITE_SUPABASE_URL` - Your Supabase project URL
 - `VITE_SUPABASE_ANON_KEY` - Your Supabase anonymous key
-- `VITE_APP_NAME` - Application name (optional, defaults to "ZK.AI Client Portal")
+- `VITE_APP_NAME` - Application name (optional, defaults to "ClientsHub Client Portal")
 - `VITE_APP_VERSION` - Application version (optional, defaults to "1.0.0")
 
 **Development**: Add these to `.env.local` file in the project root

@@ -35,7 +35,19 @@ if (!hasSupabaseConfig) {
 
 // Create Supabase client only if config is available
 export const supabase = hasSupabaseConfig 
-  ? createClient(supabaseUrl, supabaseAnonKey)
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true,
+        flowType: 'pkce'
+      },
+      global: {
+        headers: {
+          'X-Client-Info': 'clientshub-portal'
+        }
+      }
+    })
   : null;
 
 // Test Supabase connection with timeout and error handling
@@ -48,21 +60,21 @@ export const testSupabaseConnection = async () => {
   try {
     console.log('🔍 Testing connection to Supabase...');
     
-    // Quick health check with shorter timeout for production
+    // Test connection with timeout
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1500);
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
     
-    // Test auth connection instead of database query to avoid permission issues
+    // Test auth connection
     const { data, error } = await supabase.auth.getSession();
     clearTimeout(timeoutId);
     
     if (error) {
       console.log('❌ Connection test failed:', error.message);
-      return { success: false, error: 'Auth connection failed' };
+      return { success: false, error: error.message };
     }
     
     console.log('✅ Connection test successful');
-    return { success: true, error: null };
+    return { success: true, error: null, session: !!data.session };
   } catch (err) {
     const errorMessage = err instanceof Error ? 
       (err.name === 'AbortError' ? 'Connection timeout' : err.message) : 

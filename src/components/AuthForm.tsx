@@ -73,10 +73,10 @@ export default function AuthForm() {
             </div>
           </div>
           <h1 className="mt-6 text-3xl font-bold text-white">
-            Welcome to ZK.AI
+            Welcome to ClientsHub
           </h1>
           <p className="mt-2 text-sm text-purple-300">
-            Access your client portal and manage your AI workflows
+            Access your client portal and manage your workflows
           </p>
         </div>
         

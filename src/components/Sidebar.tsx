@@ -26,7 +26,7 @@ const navigation = [
 ];
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const { signOut, profile } = useAuth();
+  const { signOut, profile, user } = useAuth();
 
   const handleSignOut = async () => {
     try {
@@ -60,7 +60,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               <Zap className="h-5 w-5 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              ZK.AI
+              ClientsHub
             </span>
           </div>
           <button
@@ -98,7 +98,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 Account
               </p>
               <p className="text-sm text-purple-200 truncate">
-                {profile?.full_name || profile?.email}
+                {profile?.full_name || user?.email?.split('@')[0] || 'User'}
+              </p>
+              <p className="text-xs text-purple-400 truncate">
+                {profile?.email || user?.email}
               </p>
             </div>
             <button 

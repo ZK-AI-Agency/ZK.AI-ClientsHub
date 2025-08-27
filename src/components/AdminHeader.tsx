@@ -7,7 +7,7 @@ interface AdminHeaderProps {
 }
 
 export default function AdminHeader({ onMenuClick }: AdminHeaderProps) {
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
 
   return (
     <header className="bg-slate-800/50 backdrop-blur-xl border-b border-purple-500/20 shadow-lg">
@@ -57,15 +57,15 @@ export default function AdminHeader({ onMenuClick }: AdminHeaderProps) {
                 />
               ) : (
                 <span className="text-sm font-medium text-white">
-                  {profile?.full_name?.charAt(0) || profile?.email?.charAt(0) || 'A'}
+                  {profile?.full_name?.charAt(0) || user?.email?.charAt(0) || 'A'}
                 </span>
               )}
             </div>
             <div className="hidden sm:block">
               <p className="text-sm font-medium text-white">
-                {profile?.full_name || 'Admin'}
+                {profile?.full_name || user?.email?.split('@')[0] || 'Admin'}
               </p>
-              <p className="text-xs text-purple-300">{profile?.email}</p>
+              <p className="text-xs text-purple-300">{profile?.email || user?.email}</p>
             </div>
           </div>
         </div>

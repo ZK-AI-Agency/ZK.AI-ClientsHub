@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 
 export default function Header({ onMenuClick }: HeaderProps) {
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
 
   return (
     <header className="bg-slate-800/50 backdrop-blur-xl border-b border-purple-500/20 shadow-lg">
@@ -52,15 +52,15 @@ export default function Header({ onMenuClick }: HeaderProps) {
                 />
               ) : (
                 <span className="text-sm font-medium text-white">
-                  {profile?.full_name?.charAt(0) || profile?.email?.charAt(0) || 'U'}
+                  {profile?.full_name?.charAt(0) || user?.email?.charAt(0) || 'U'}
                 </span>
               )}
             </div>
             <div className="hidden sm:block">
               <p className="text-sm font-medium text-white">
-                {profile?.full_name || 'User'}
+                {profile?.full_name || user?.email?.split('@')[0] || 'User'}
               </p>
-              <p className="text-xs text-purple-300">{profile?.email}</p>
+              <p className="text-xs text-purple-300">{profile?.email || user?.email}</p>
             </div>
           </div>
         </div>
